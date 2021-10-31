@@ -16,13 +16,70 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.person_add_outlined,
+            size: 28,
+            color: Colors.grey.shade900,
+          ),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.grey.shade100,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.filter_center_focus_rounded,
+                    size: 28,
+                    color: Colors.grey.shade900,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.add_ic_call_sharp,
+                    size: 28,
+                    color: Colors.grey.shade900,
+                  ),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.add_shopping_cart_rounded,
+                    size: 28,
+                    color: Colors.grey.shade900,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          )
+        ],
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8, right: 8),
+          child: Text(
+            'Facebook',
+            style: TextStyle(
+              color: Colors.blue.shade900,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 120,
-            padding: EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 10),
+            height: 80,
+            padding: EdgeInsets.only(right: 20, left: 20),
             child: Row(
               children: [
                 Expanded(
@@ -66,7 +123,8 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding:
+                    EdgeInsets.only(top: 8, bottom: 20, left: 20, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -167,9 +225,6 @@ class _HomePageState extends State<HomePage> {
                       feedText:
                           'All the lorem makıdadawdadawdmwn All the lorem makıdadawdadawdmwn hathatAll the lorem makıdadawdadawdmwn hatayspor... beşiktaş',
                     )
-                    /**
-                     * 8.dakikada kaldım
-                     */
                   ],
                 ),
               ),
