@@ -81,6 +81,41 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(
+          Icons.add,
+          size: 30,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.pink,
+        focusColor: Colors.amber,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            color: Colors.grey.shade900,
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              bottomButton(icon: Icons.search, color: Colors.green),
+              bottomButton(icon: Icons.home, color: Colors.yellow),
+              SizedBox.shrink(),
+              bottomButton(
+                  icon: Icons.video_collection, color: Colors.blueAccent),
+              bottomButton(icon: Icons.library_music, color: Colors.red),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -804,6 +839,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget bottomButton({icon, color}) {
+    return IconButton(
+      onPressed: () {},
+      icon: Icon(
+        icon,
+        color: color,
+        size: 28,
       ),
     );
   }
