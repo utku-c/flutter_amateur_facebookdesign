@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +20,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (_) => bildirimMesaj(),
+              barrierDismissible: false,
+            );
+          },
           icon: Icon(
             Icons.person_add_outlined,
             size: 28,
@@ -114,6 +122,20 @@ class _HomePageState extends State<HomePage> {
                     Icons.camera_alt,
                     color: Colors.grey.shade800,
                     size: 30,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Container(
+                  width: 43,
+                  height: 43,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/message.png',
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -341,7 +363,13 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => ucNokta(name: userName),
+                    barrierDismissible: true,
+                  );
+                },
                 icon: Icon(
                   Icons.more_horiz,
                   size: 30,
@@ -540,6 +568,241 @@ class _HomePageState extends State<HomePage> {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget bildirimMesaj() {
+    return AlertDialog(
+      title: Text(
+        'Arkadaş Eklemek İstiyor Musun?',
+        style: TextStyle(
+          color: Colors.grey.shade800,
+          fontSize: 18,
+        ),
+      ),
+      content: Text(
+        'Tanımadığın kişileri ekleme!',
+        style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey.shade400,
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Evet',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade800,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/positive-vote.png',
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(width: 8),
+              Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey.shade400,
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Hayır',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade800,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'assets/images/negative-vote.png',
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
+      elevation: 4,
+      backgroundColor: Colors.grey.shade200,
+    );
+  }
+
+  Widget ucNokta({name}) {
+    return AlertDialog(
+      elevation: 80,
+      backgroundColor: Colors.grey.shade300,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$name adlı kullanıcıyı neden şikayet etmek istiyorsun?',
+            style: TextStyle(
+              color: Colors.red.shade900,
+              fontSize: 18,
+            ),
+          ),
+          SizedBox(height: 12),
+          Text(
+            'Hey...\nGereksiz İhbarlardan Kaçın...\nYalan ihbarlar senide etkiler',
+            style: TextStyle(
+              color: Colors.grey.shade500,
+              fontSize: 14,
+            ),
+          )
+        ],
+      ),
+      content: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: Colors.grey.shade600,
+        ),
+        height: 350,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            bildirimDurum(bildirimNedeni: 'Yalan Haber'),
+            bildirimDurum(bildirimNedeni: 'Şikayet Et'),
+            bildirimDurum(bildirimNedeni: 'Rapor Et'),
+            bildirimDurum(bildirimNedeni: 'Hassas İçerik'),
+            bildirimDurum(bildirimNedeni: 'Kötüye kullanım Bildir'),
+            bildirimDurum(bildirimNedeni: '13 Yaş Altı')
+          ],
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(
+                  'Bizden Memnun Kaldınız mı ?',
+                  style: TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print('Teşekkür ederiz');
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 130,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: Colors.green,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Memnun Kaldım',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () {
+                      print('Teşekkür ederiz');
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 130,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        color: Colors.red,
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Memnun Kalmadım',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget bildirimDurum({bildirimNedeni}) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          print(bildirimNedeni + '\'e tıklandı.');
+        },
+        child: Center(
+          child: Container(
+            child: Text(
+              bildirimNedeni,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white70,
+              ),
+            ),
+          ),
         ),
       ),
     );
